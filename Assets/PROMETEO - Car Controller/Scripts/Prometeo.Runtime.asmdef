@@ -1,0 +1,16 @@
+{
+    "name": "Prometeo.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:af9d4882971a5864a9a2d23fb8de8f1a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
