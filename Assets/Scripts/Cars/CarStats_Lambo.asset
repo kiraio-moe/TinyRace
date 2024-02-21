@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8be291cf12fc6c48b142ac68fc0c375, type: 3}
   m_Name: CarStats_Lambo
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 270
+  m_Mass: 1200
+  m_MaxSpeed: 200
   m_MaxReverseSpeed: 50
-  m_AccelerationMultiplier: 7
-  m_MaxSteeringAngle: 45
-  m_SteeringSpeed: 2
-  m_BrakeForce: 500
-  m_DecelerationMultiplier: 2
-  m_DriftMultiplier: 0.1
-  m_CarMassCenter: {x: 0, y: -0.2, z: 0}
+  m_AccelerationMultiplier: 100
+  m_Acceleration: 1000
+  m_MaxTurnAngle: 35
+  m_MaxTurnAngleMaxSpeed: 20
+  m_SteeringSpeed: 1.5
+  m_BrakeForce: 50
+  m_DecelerationMultiplier: 5
+  m_DriftMultiplier: 20
+  m_CenterOfMass: {x: 0, y: -1, z: 0}

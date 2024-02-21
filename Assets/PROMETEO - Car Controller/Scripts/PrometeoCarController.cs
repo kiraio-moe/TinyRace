@@ -13,7 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Aili.MiniRace.Car;
+using Aili.TinyRacing.Vehicle;
 
 public class PrometeoCarController : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class PrometeoCarController : MonoBehaviour
       [Space(20)]
       //[Header("CAR SETUP")]
       // [Space(10)]
-	  public CarStats m_CarStats;
+	  public CarStatsData m_CarStats;
 	  
       // [Range(20, 190)]
       // public int maxSpeed = 90; //The maximum speed that the car can reach in km/h.
@@ -168,7 +168,7 @@ public class PrometeoCarController : MonoBehaviour
       //gameObject. Also, we define the center of mass of the car with the Vector3 given
       //in the inspector.
       carRigidbody = gameObject.GetComponent<Rigidbody>();
-      carRigidbody.centerOfMass = m_CarStats.m_CarMassCenter;
+      carRigidbody.centerOfMass = m_CarStats.m_CenterOfMass;
 
       //Initial setup to calculate the drift value of the car. This part could look a bit
       //complicated, but do not be afraid, the only thing we're doing here is to save the default
@@ -431,7 +431,7 @@ public class PrometeoCarController : MonoBehaviour
       if(steeringAxis < -1f){
         steeringAxis = -1f;
       }
-      var steeringAngle = steeringAxis * m_CarStats.m_MaxSteeringAngle;
+      var steeringAngle = steeringAxis * m_CarStats.m_MaxTurnAngle;
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, m_CarStats.m_SteeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, m_CarStats.m_SteeringSpeed);
     }
@@ -442,7 +442,7 @@ public class PrometeoCarController : MonoBehaviour
       if(steeringAxis > 1f){
         steeringAxis = 1f;
       }
-      var steeringAngle = steeringAxis * m_CarStats.m_MaxSteeringAngle;
+      var steeringAngle = steeringAxis * m_CarStats.m_MaxTurnAngle;
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, m_CarStats.m_SteeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, m_CarStats.m_SteeringSpeed);
     }
@@ -458,7 +458,7 @@ public class PrometeoCarController : MonoBehaviour
       if(Mathf.Abs(frontLeftCollider.steerAngle) < 1f){
         steeringAxis = 0f;
       }
-      var steeringAngle = steeringAxis * m_CarStats.m_MaxSteeringAngle;
+      var steeringAngle = steeringAxis * m_CarStats.m_MaxTurnAngle;
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, m_CarStats.m_SteeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, m_CarStats.m_SteeringSpeed);
     }

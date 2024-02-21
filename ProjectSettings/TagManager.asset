@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Car
+  - ResetDriftCollision
   layers:
   - Default
   - TransparentFX
@@ -11,14 +13,14 @@ TagManager:
   - 
   - Water
   - UI
-  - PostProcessing
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Car
+  - Road
+  - BrakingGround
+  - Metal
+  - Rubber
+  - FinishZone
   - 
   - 
   - 

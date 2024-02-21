@@ -1,0 +1,18 @@
+{
+    "name": "WsWhiteHouse.TagSelector.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0b3c09433e4e08c4693c6279576b6a09"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
