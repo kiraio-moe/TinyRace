@@ -37,9 +37,9 @@ public class KartController : MonoBehaviour
 
     [Header("Model Parts")]
 
-    public Transform frontWheels;
-    public Transform backWheels;
-    public Transform steeringWheel;
+    public Transform frontLeftWheel, frontRightWheel;
+    public Transform rearLeftWheel, rearRightWheel;
+    // public Transform steeringWheel;
 
     [Header("Particles")]
     public Transform wheelParticles;
@@ -100,8 +100,8 @@ public class KartController : MonoBehaviour
                 p.Play();
             }
 
-            kartModel.parent.DOComplete();
-            kartModel.parent.DOPunchPosition(transform.up * .2f, .3f, 5, 1);
+            // kartModel.parent.DOComplete();
+            // kartModel.parent.DOPunchPosition(transform.up * .2f, .3f, 5, 1);
 
         }
 
@@ -123,26 +123,27 @@ public class KartController : MonoBehaviour
         currentSpeed = Mathf.SmoothStep(currentSpeed, speed, Time.deltaTime * 12f); speed = 0f;
         currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * 4f); rotate = 0f;
 
-        //Animations    
+        //Animations
 
-        //a) Kart
-        // if (!drifting)
-        // {
-        //     kartModel.localEulerAngles = Vector3.Lerp(kartModel.localEulerAngles, new Vector3(0, Input.GetAxis("Horizontal") * 15, kartModel.localEulerAngles.z), .2f);
-        // }
-        // else
-        // {
-        //     float control = (driftDirection == 1) ? ExtensionMethods.Remap(Input.GetAxis("Horizontal"), -1, 1, .5f, 2) : ExtensionMethods.Remap(Input.GetAxis("Horizontal"), -1, 1, 2, .5f);
-        //     kartModel.parent.localRotation = Quaternion.Euler(0, Mathf.LerpAngle(kartModel.parent.localEulerAngles.y,(control * 15) * driftDirection, .2f), 0);
-        // }
+        // a) Kart
+        if (!drifting)
+        {
+            kartModel.localEulerAngles = Vector3.Lerp(kartModel.localEulerAngles, new Vector3(0, 90 + (Input.GetAxis("Horizontal") * 15), kartModel.localEulerAngles.z), .2f);
+        }
+        else
+        {
+            float control = (driftDirection == 1) ? ExtensionMethods.Remap(Input.GetAxis("Horizontal"), -1, 1, .5f, 2) : ExtensionMethods.Remap(Input.GetAxis("Horizontal"), -1, 1, 2, .5f);
+            kartModel.parent.localRotation = Quaternion.Euler(0, Mathf.LerpAngle(kartModel.parent.localEulerAngles.y,(control * 15) * driftDirection, .2f), 0);
+        }
 
         //b) Wheels
-        frontWheels.localEulerAngles = new Vector3(0, (Input.GetAxis("Horizontal") * 15), frontWheels.localEulerAngles.z);
-        frontWheels.localEulerAngles += new Vector3(0, 0, sphere.velocity.magnitude/2);
-        backWheels.localEulerAngles += new Vector3(0, 0, sphere.velocity.magnitude/2);
+        frontLeftWheel.localRotation = frontRightWheel.localRotation = Quaternion.Euler(0, Input.GetAxis("Horizontal") * 15, 0);
+        frontLeftWheel.localEulerAngles = frontRightWheel.localEulerAngles += new Vector3(sphere.velocity.magnitude / 2, frontLeftWheel.localEulerAngles.y, 0);
+
+        rearLeftWheel.localEulerAngles = rearRightWheel.localEulerAngles += new Vector3(sphere.velocity.magnitude / 2, 0, 0);
 
         //c) Steering Wheel
-        steeringWheel.localEulerAngles = new Vector3(-25, 90, ((Input.GetAxis("Horizontal") * 45)));
+        // steeringWheel.localEulerAngles = new Vector3(-25, 90, ((Input.GetAxis("Horizontal") * 45)));
 
     }
 
@@ -153,7 +154,7 @@ public class KartController : MonoBehaviour
 
         //Forward Acceleration
         if(!drifting)
-            sphere.AddForce(-kartModel.transform.right * currentSpeed, ForceMode.Acceleration);
+            sphere.AddForce(kartModel.transform.forward * currentSpeed, ForceMode.Acceleration);
         else
             sphere.AddForce(transform.forward * currentSpeed, ForceMode.Acceleration);
 
