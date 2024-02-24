@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Aili.TinyRacing.Vehicle
 {
-	[AddComponentMenu("Aili/Tiny Race/Vehicle/Car Controller")]
+	[AddComponentMenu("Aili/Tiny Racing/Vehicle/Car Controller")]
 	public class CarController : MonoBehaviour
 	{
 		[Header("PHYSICS")]

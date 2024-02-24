@@ -27,9 +27,9 @@ namespace Aili.TinyRacing.Race
         {
             if (collider.CompareTag(m_TriggerWith))
             {
+                Debug.Log($"Checkpoint: {m_CheckpointIndex} | Trigger: {m_TriggerWith}");
                 if (checkpointManager.currentCheckpoint == m_CheckpointIndex - 1)
                     checkpointManager.currentCheckpoint = m_CheckpointIndex;
-                Debug.Log($"TRIGGER WITH {m_TriggerWith}");
             }
         }
     }
